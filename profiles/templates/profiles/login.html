@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-2 p-3">
+    {% if form.errors %}
+        {% for key, value in form.errors.items %}
+            <div class="alert alert-danger">
+                {{ value }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div class="container border border-lightgrey justify-content-md-center p-6 pb-2" style="width:450px">
+        <svg class="text-center mb-1"><text x="110" y="85" class="Rrrrr" style="font:40px Monaco; fill: #007bff;">MeConnect</text></svg>
+
+        <form method="post" class="mt-2">
+            {% csrf_token %}
+            {% for field in form %}
+                {{ field }}
+            {% endfor %}
+            <button class="btn btn-primary w-100 font-weight-bold" type="submit">Login</button>
+        </form>
+    </div>
+    <div class="container border border-lightgrey justify-content-md-center p-3 text-center mt-2" style="width:450px">
+        Do not have an account <a href="{% url 'register' %}" class="font-weight-bold">Sign up</a> <br>
+        <a href="{% url 'reset_password' %}" class="font-weight-bold" style="color: #007bff;">Reset Password</a>
+    </div>
+</div>
+
+{% endblock %}
