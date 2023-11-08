@@ -4,6 +4,7 @@ from django.contrib import messages
 from profiles.models import Profile
 from .models import Post, Comment
 from .forms import NewPostForm
+import os 
 
 
 def home(request):
@@ -62,7 +63,7 @@ def post_delete_view(request, pk):
     if(post.author == request.user.profile):
         return redirect('home')
     post.delete()
-    messages.success(request, 'Your post has been deleted successfully!')
+    messages.success(request, 'Your post has deleted successfully!')
     return redirect('home')
 
 
